@@ -1,0 +1,43 @@
+import random
+
+def obtener_opcion_usuario():
+    opciones = ["piedra", "papel", "tijera"]
+    usuario = input("Elige piedra, papel o tijera: ").lower()
+    while usuario not in opciones:
+        usuario = input("Entrada no válida. Por favor, elige piedra, papel o tijera: ").lower()
+    return usuario
+
+def obtener_opcion_computadora():
+    opciones = ["piedra", "papel", "tijera"]
+    computadora = random.choice(opciones)
+    return computadora
+
+def determinar_ganador(usuario, computadora):
+    if usuario == computadora:
+        return "Empate"
+    elif (usuario == "piedra" and computadora == "tijera") or \
+         (usuario == "papel" and computadora == "piedra") or \
+         (usuario == "tijera" and computadora == "papel"):
+        return "Ganas tú"
+    else:
+        return "Gana la computadora"
+
+def jugar():
+    print("¡Bienvenido al juego de Piedra, Papel o Tijera!")
+    while True:
+        usuario = obtener_opcion_usuario()
+        computadora = obtener_opcion_computadora()
+        print(f"Tú eliges: {usuario}")
+        print(f"La computadora elige: {computadora}")
+
+        resultado = determinar_ganador(usuario, computadora)
+        print(resultado)
+
+        jugar_nuevamente = input("¿Quieres jugar otra vez? (sí/no): ").lower()
+        if jugar_nuevamente != "sí":
+            break
+
+    print("¡Gracias por jugar!")
+
+if __name__ == "__main__":
+    jugar()
